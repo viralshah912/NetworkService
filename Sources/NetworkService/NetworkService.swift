@@ -53,6 +53,8 @@ public struct NetworkService {
                     let decoded = try JSONDecoder().decode(T.self, from: data)
                     return decoded
                 } catch {
+                    print("Decoding error: \(error)")
+                    print(String(data: data, encoding: .utf8) ?? "No data string")
                     throw NetworkError.decodingError
                 }
             } catch let error as NetworkError {
